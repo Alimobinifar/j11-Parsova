@@ -1,4 +1,5 @@
 
+
 from tkinter import * 
 from tkinter import ttk
 
@@ -8,8 +9,18 @@ class PhoneNumber:
         self.phone_number()
         self.form.mainloop()
     
+    def save(self,phone_number):
+            with open('C:/Users/p43/Desktop/phones.txt','a') as p :
+                 p.write(phone_number+"\n")
+             
     def phone_number(self):
-        phone_entry = Entry(self.form).place(x=35,y=10)
-        save_btn = Button(self.form,text="Save Phone").place(x=50,y=40)
+        number=StringVar()
+        phone_entry = Entry(self.form,textvariable=number).place(x=35,y=10)
+        
+        save_btn = Button(self.form,text="Save Phone",
+                 command=lambda:self.save(number.get())).place(x=50,y=40)
 
-x = PhoneNumber()
+
+    
+
+numbers = PhoneNumber()
